@@ -1,0 +1,24 @@
+{
+  "name": "notetaker-hw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisgbootcamp/NoteTaker-HW.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chrisgbootcamp/NoteTaker-HW/issues"
+  },
+  "homepage": "https://github.com/chrisgbootcamp/NoteTaker-HW#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "util": "^0.12.3"
+  }
+}
