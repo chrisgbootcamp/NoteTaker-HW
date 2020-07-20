@@ -1,16 +1,17 @@
 const router = require("express").Router();
-const Notes = require("../db/Notes");
+const notes = require("../db/Notes");
 
-router.get("/api/notes", (req, res) => {
-  Notes.getNotes().then((notes) => res.json(notes)).catch((err) => res.status(500).json(err))
+router.get("/notes", (req, res) => {
+  notes.getNotes().then((notes) => res.json(notes)).catch((err) => res.status(500).json(err))
 });
 
-router.post("/api/notes", (req, res) => {
-  Notes.addNote(req.body).then((note) => res.json(note)).catch((err) => res.status(500).json(err))
+router.post("/notes", (req, res) => {
+  notes.addNote(req.body).then((note) => res.json(note)).catch((err) => res.status(500).json(err))
 });
 
 
-router.post("/api/notes/:id", (req, res) => {
-  Notes.removeNote(req.params.id).then(() => res.json({ ok: true })).catch((err) => res.status(500).json)
+router.post("/notes/:id", (req, res) => {
+  notes.removeNote(req.params.id).then(() => res.json({ ok: true })).catch((err) => res.status(500).json(err))
+});
 
-})
+module.exports = router;
