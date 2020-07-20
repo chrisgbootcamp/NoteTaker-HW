@@ -1,43 +1,16 @@
+const router = require("express").Router();
+const Notes = require("../db/Notes");
+
+router.get("/api/notes", (req, res) => {
+  Notes.getNotes().then((notes) => res.json(notes)).catch((err) => res.status(500).json(err))
+});
+
+router.post("/api/notes", (req, res) => {
+  Notes.addNote(req.body).then((note) => res.json(note)).catch((err) => res.status(500).json(err))
+});
 
 
-const tableData = require("../data/tableData");
-const waitListData = require("../data/waitinglistData");
+router.post("/api/notes/:id", (req, res) => {
+  Notes.removeNote(req.params.id).then(() => res.json({ ok: true })).catch((err) => res.status(500).json)
 
-
-
-
-module.exports = function(app) {
-
-
-  app.get("/api/getNotes", function(req, res) {
-    res.json(tableData);
-  });
-
-  app.get("/api/Addnotes", function(req, res) {
-    res.json(waitListData);
-  });
-
-  
-
-  app.post("/api/removeNotes", function(req, res) {
-    
-    if (tableData.length < 5) {
-      tableData.push(req.body);
-      res.json(true);
-    }
-    else {
-      waitListData.push(req.body);
-      res.json(false);
-    }
-  });
-
- 
-
-  app.post("/api/clear", function(req, res) {
-   
-    tableData.length = 0;
-    waitListData.length = 0;
-
-    res.json({ ok: true });
-  });
-};
+})
